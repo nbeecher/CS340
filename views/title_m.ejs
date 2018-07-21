@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Update Title Page</title>
+		<link rel="stylesheet" href="/app.css">
+	</head>
+	<body>
+		<a href="/"> Home </a>
+		<h3>Title(s) for a person</h3>		
+		<p></p>
+		<form action="/addTitleM" method="POST">
+			<fieldset>
+				<legend>Add</legend>
+					Person: <select name="addName_m">
+					<% addName_m.forEach(function (uPm) { %>
+						<option value="<%= uPm.person_id %>"><%= uPm.name %></option>
+						<% }); %>
+					</select>
+					<p></p>
+					<p></p>
+					Title: <select name="addTitle_m">
+					<% addTitle_m.forEach(function (uTm) { %>
+						<option value="<%= uTm.title_id %>"><%= uTm.title %></option>
+						<% }); %>
+					</select>
+					<p></p>
+					<button>Submit</button>
+			</fieldset>
+		<p></p>	
+		<table>
+	    <thead> 
+	        <th>Name</th> 
+	        <th>Title</th> 
+	    </thead> 
+	    <tbody> 
+	    	<% title_m.forEach(function (t_m) { %>
+	        <tr> 
+	            <td><%= t_m.name %></td> 
+	            <td><%= t_m.title %></td>
+	            <td><a href="/deleteTitleM/<%= t_m.person_id %>/<%= t_m.title_id %>"> Delete </a></td>
+	            <td><a href="/updateTitleM/<%= t_m.person_id %>/<%= t_m.title_id %>"> Update </a></td>
+	        </tr>    
+			<% }); %>	
+	    </tbody>
+	</table> 
+	</body>
+</html>
+
+

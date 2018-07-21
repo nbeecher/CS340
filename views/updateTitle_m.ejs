@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Update Title Page</title>
+		<link rel="stylesheet" href="/app.css">
+	</head>
+	<body>		
+		<h3>Title(s) for a person</h3>	
+		<form action="/updateTm" method="POST">
+			<fieldset>
+				<legend>Update</legend>
+					Person: <select name="updateTitle_m">
+					<% updateTitle_m.forEach(function (uPm) { %>
+						<option value="<%= uPm.title_id %>"><%= uPm.title %></option>
+						<% }); %>
+					</select>
+				<p></p>	
+				<button>Submit</button>
+			</fieldset>		
+	</form>
+	</body>
+</html>
+
+

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Update Region Page</title>
+		<link rel="stylesheet" href="/app.css">
+	</head>
+	<body>
+		<a href="/"> Home </a>
+		<h3>Update person's region</h3>
+		<form action="/updateRegion" method="POST">
+			<fieldset>
+				<legend>Update Person's region:</legend>
+					Person ID: <select name="personUpdate">
+					<% personUpdate.forEach(function (pU) { %>
+						<option value="<%= pU.person_id %>"><%= pU.name %></option>
+						<% }); %>
+					</select>
+					<p></p>
+					Region ID: 
+					<select name="regionUpdate">				
+					<% regionUpdate.forEach(function (rU) { %>
+					<option value="<%= rU.region_id %>"><%= rU.name %></option>
+					<% }); %>
+					</select>
+					<p></p>
+					<button>Update</button>
+			</fieldset>	
+		<p></p>
+		<table>
+	    <thead> 	    	
+	        <th>Name</th> 
+	        <th>Region</th> 
+	    </thead> 
+	    <tbody> 
+	    	<% region_1.forEach(function (r_1) { %>
+	        <tr> 	        	
+	            <td><%= r_1.name %></td> 
+	            <td><%= r_1.region %></td>	           
+	        </tr>  
+	        <% }); %>  
+	    </tbody>
+	</table> 
+
+	</body>
+</html>
+
+

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Title Page</title>
+		<link rel="stylesheet" href="/app.css">
+	</head>
+	<body>
+		<a href="/"> Home </a>
+		<h3>List of titles</h3>
+		<p></p>
+		<form action="/addTitle" method="POST" name="addPost" onsubmit="checkForm(event)">
+			<fieldset>
+				<legend>Add title:</legend>
+					Title: <input type="text" name="addTitle" placeholder="Title">
+					<p></p>
+					<button>Submit</button>
+			</fieldset>
+		</form>
+		<p></p>
+		<table>
+	    <thead> 
+	        <th>Title</th> 
+	    </thead> 
+	    <tbody> 
+	    	<% title.forEach(function (t) { %>
+	        <tr> 
+	            <td><%= t.title %></td>	
+	            <td><a href="/deleteTitle/<%= t.title_id %>"> Delete </a></td>         
+	        </tr>    
+	        <% }); %>
+	    </tbody>
+	</table> 
+
+	</body>
+
+	<script type="text/javascript">
+		function checkForm(evt){
+			var myForm = document.addPost;
+			var condition = true;
+
+			if(myForm.addTitle.value == ""){
+				alert("Please enter a title");
+				myForm.addTitle.focus();
+				condition = false;
+			}
+
+			if(!condition){
+				if(evt.preventDefault){evt.preventDefault();}
+				else if(evt.return){evt.returnValue = false;}
+				else{return false;}
+			}
+		}
+	</script>
+</html>
+
+

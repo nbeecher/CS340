@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Person Page</title>
+		<link rel="stylesheet" href="/app.css">
+	</head>
+	<body>
+		<a href="/"> Home </a>
+		<h3>People of Game of Thrones</h3>
+		<p></p>
+		<form action="/addPerson" method="POST" onsubmit="checkAdd(event)" name="addPost">
+			<fieldset>
+				<legend>Add person:</legend>
+					First Name: <input type="text" name="fnameInput" placeholder="first name">			
+					Last Name: <input type="text" name="lnameInput" placeholder="last name">
+					<p></p>
+					Status: <select name="statusInput">
+						<option value="Alive">Alive</option>
+						<option value="Deceased">Deceased</option>
+					</select>
+					<p></p>
+					Region: <select name="personRegionAdd">
+					<% personRegionAdd.forEach(function (pRa) { %>
+						<option value="<%= pRa.region_id %>"><%= pRa.region %></option>
+						<% }); %>
+					</select>
+					Allegiance: <select name="personAllegianceAdd">
+					<% personAllegianceAdd.forEach(function (pAa) { %>
+						<option value="<%= pAa.a_id%>"><%= pAa.allegiance %></option>
+						<% }); %>
+					</select>
+					<p></p>
+					<button>Submit</button>
+			</fieldset>
+		</form>
+			<form action="/updatePerson" method="POST" onsubmit="checkForm(event)" name="updatePost">
+			<fieldset>
+				<legend>Update person:</legend>
+					Person: <select name="personForU">
+					<% personForU.forEach(function (pFu) { %>
+						<option value="<%= pFu.person_id %>"><%= pFu.name %></option>
+						<% }); %>
+					</select>
+					<p></p>
+					First Name: <input type="text" name="firstNameUpdate" placeholder="first name">
+					 	
+					Last Name: <input type="text" name="lastNameUpdate" placeholder="last name">
+					<p></p>
+					Status: <select name="statusInputUpdate">
+						<option value="Alive">Alive</option>
+						<option value="Deceased">Deceased</option>
+					</select>
+					<p></p>
+					Region: <select name="personRegionUpdate">
+					<% personRegionUpdate.forEach(function (pRa) { %>
+						<option value="<%= pRa.region_id %>"><%= pRa.region %></option>
+						<% }); %>
+					</select>
+					Allegiance: <select name="personAllegianceUpdate">
+					<% personAllegianceUpdate.forEach(function (pAa) { %>
+						<option value="<%= pAa.a_id%>"><%= pAa.allegiance %></option>
+						<% }); %>
+					</select>
+					<p></p>
+					<button>Update</button>
+			</fieldset>
+		</form>
+		<p></p>
+		<table>
+	    <thead> 
+	        <th>First Name</th> 
+	        <th>Last Name</th> 
+	        <th>Status</th>
+	        <th>Region</th>
+	        <th>Allegiance</th>
+	    </thead> 
+	    <tbody> 
+	    	<% person.forEach(function (p) { %>
+	        <tr>	        	
+	        	<td><%= p.fname %></td>	                     
+	            <td><%= p.lname %></td>	
+	            <td><%= p.status %></td>
+	            <td><%= p.region %></td> 
+	            <td><%= p.allegiance %></td>
+	            <td><a href="/deletePerson/<%= p.person_id %>"> Delete </a></td> 
+	        </tr>    
+			<% }); %>	
+	    </tbody>
+	</table> 
+
+	</body>
+	<script type="text/javascript">
+		function checkForm(evt){
+			var myForm = document.updatePost;
+			var condition = true;
+
+			if(myForm.firstNameUpdate.value == ""){
+				alert("Please enter a first name");
+				myForm.firstNameUpdate.focus();
+				condition = false;
+			}
+			if(myForm.lastNameUpdate.value == ""){
+				alert("Please enter a last name");
+				myForm.lastNameUpdate.focus();
+				condition = false;
+			}
+
+			if(!condition){
+				if(evt.preventDefault){evt.preventDefault();}
+				else if(evt.return){evt.returnValue = false;}
+				else{return false;}
+			}
+		}
+
+		function checkAdd(evt){
+			var myForm = document.addPost;
+			var condition = true;
+
+			if(myForm.fnameInput.value == ""){
+				alert("Please enter a first name");
+				myForm.fnameInput.focus();
+				condition = false;
+			}
+			if(myForm.lnameInput.value == ""){
+				alert("Please enter a last name");
+				myForm.lnameInput.focus();
+				condition = false;
+			}
+
+			if(!condition){
+				if(evt.preventDefault){evt.preventDefault();}
+				else if(evt.return){evt.returnValue = false;}
+				else{return false;}
+			}
+		}
+	</script>
+</html>
+

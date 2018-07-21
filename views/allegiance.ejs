@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Allegiance Page</title>
+		<link rel="stylesheet" href="/app.css">
+	</head>
+	<body>
+		<a href="/"> Home </a>
+		<h3>List of allegiances</h3>
+		<p></p>
+		<form action="/addAllegiance" method="POST" name="addPost" onsubmit="checkForm(event)">
+			<fieldset>
+				<legend>Add allegiance:</legend>
+					House Name: <input type="text" name="aName" placeholder="House Name">
+					<p></p>
+					<button>Submit</button>
+			</fieldset>
+		</form>
+		<p></p>
+		<table>
+	    <thead> 
+	        <th>House</th> 
+	    </thead> 
+	    <tbody> 
+	    	<% allegiance.forEach(function (a) { %>
+	        <tr> 
+	            <td><%= a.house %></td> 
+	            <td><a href="/deleteAllegiance/<%= a.a_id %>"> Delete </a></td>
+	        </tr>    
+			<% }); %>
+	    </tbody>
+	</table> 
+
+	</body>
+	<script type="text/javascript">
+		function checkForm(evt){
+			var myForm = document.addPost;
+			var condition = true;
+
+			if(myForm.aName.value == ""){
+				alert("Please enter a house name");
+				myForm.aName.focus();
+				condition = false;
+			}
+
+			if(!condition){
+				if(evt.preventDefault){evt.preventDefault();}
+				else if(evt.return){evt.returnValue = false;}
+				else{return false;}
+			}
+		}
+	</script>
+</html>
+
+

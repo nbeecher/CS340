@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Castle Page</title>
+		<link rel="stylesheet" href="/app.css">
+	</head>
+	<body>
+		<a href="/"> Home </a>
+		<h3>List of castles</h3>
+		<p></p>
+		<form action="/addCastle" method="POST" name="addPost" onsubmit="checkForm(event)">
+			<fieldset>
+				<legend>Add castle:</legend>
+					Name: <input type="text" name="castleName" placeholder="Castle Name">
+					<p></p>
+					Ruler: 
+					<select name="rulerInput">				
+					<% rulerInput.forEach(function (rD) { %>
+						<option value="<%= rD.a_id %>"><%= rD.ruler %></option>
+						<% }); %>
+					</select>
+					<p></p>
+					Region: <select name="regionInput">
+					<% regionInput.forEach(function (reD) { %>
+						<option value="<%= reD.region_id %>"><%= reD.name %></option>
+						<% }); %>
+					</select>
+					<p></p>
+					<button>Submit</button>
+			</fieldset>
+		</form>
+		<p></p>
+		<table>
+	    <thead> 
+	        <th>Name</th> 
+	        <th>Ruler</th> 
+	        <th>Region</th>
+	    </thead> 
+	    <tbody> 
+	    	<% castle.forEach(function (c) { %>
+	        <tr> 
+	            <td><%= c.name %></td> 
+	            <td><%= c.ruler %></td>
+	            <td><%= c.region %></td>
+	            <td><a href="/deleteCastle/<%= c.castle_id %>"> Delete </a></td>
+	        </tr>    
+			<% }); %>
+	    </tbody>
+	</table> 
+
+	</body>
+
+	<script type="text/javascript">
+		function checkForm(evt){
+			var myForm = document.addPost;
+			var condition = true;
+
+			if(myForm.castleName.value == ""){
+				alert("Please enter a castle name");
+				myForm.castleName.focus();
+				condition = false;
+			}
+
+			if(!condition){
+				if(evt.preventDefault){evt.preventDefault();}
+				else if(evt.return){evt.returnValue = false;}
+				else{return false;}
+			}
+		}
+	</script>
+</html>
+
+

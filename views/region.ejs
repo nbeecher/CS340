@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Region Page</title>
+		<link rel="stylesheet" href="/app.css">
+	</head>
+	<body>
+		<a href="/"> Home </a>
+		<h3>List of regions</h3>
+		<form action="/addRegion" method="POST">
+			<fieldset>
+				<legend>Add region:</legend>
+					Name: <input type="text" name="regionName" placeholder="Name">
+					<p></p>
+					Population: <input type="number" name="regionPop" placeholder="Population">
+					<p></p>
+					<button>Submit</button>
+			</fieldset>
+		</form>
+		<p></p>
+		<table>
+	    <thead> 
+	        <th>Name</th> 
+	        <th>Population</th> 
+	    </thead> 
+	    <tbody> 
+	    	<% region.forEach(function (r) { %>
+	        <tr> 
+	            <td><%= r.name %></td> 
+	            <td><%= r.population %></td>
+	            <td><a href="/deleteRegion/<%= r.region_id %>"> Delete </a></td>  
+	        </tr>    
+			<% }); %> 
+	    </tbody>
+	</table> 
+
+	</body>
+</html>
+
+
